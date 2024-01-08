@@ -1,0 +1,70 @@
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+img {
+    image-rendering: pixelated;
+}
+
+#container {
+    width: 95%;
+    /* max-height: 70%; */
+    top: 15%;
+    left: 2.5%;
+    position: absolute;
+}
+
+.page {  
+    width: 95%;  
+    max-height: 70%;  
+    object-fit: contain;                     
+    left: 2.5%;
+    top: 15%;
+    /* object-fit: cover; */
+    position: absolute;
+    z-index: 0;
+}
+
+.stamp {
+    width: 25%;
+    max-height: 15%;
+    object-fit: contain;                     
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 37.5%;
+    z-index: 4;
+}
+
+.UI-button {
+    position: absolute;
+    z-index: 4;
+    scale: 120%;
+}
+
+.page-advance {
+    height: 5%;
+}
+
+#next-page {
+    bottom: 17%;
+    right: 15%;
+
+}
+
+#prev-page {
+    bottom: 17%;
+    left: 15%;
+}
+
+#quit-button {
+    left: 3px;
+    top: 3px;
+}
+
+#close-button {
+    left: 50%;
+    top: 5%;
+}
