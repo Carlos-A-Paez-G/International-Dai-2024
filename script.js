@@ -131,7 +131,7 @@ class passport {
     displayUI() {
         document.body.appendChild(this.quitButton);
 
-        if(this.activePage < this.pages.length) {
+        if(this.activePage < this.pages.length-1) {
             document.body.appendChild(this.nextPageButton);
         } else {
             document.body.removeChild(this.nextPageButton);
