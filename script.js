@@ -9,18 +9,28 @@ var prev_img = 'assets/UI/prev1.png';
 var quit_img = 'assets/UI/close1.png';
 var close_img = 'assets/UI/close1.png';
 
+//total number of pages in the passport (not counting cover and back cover)
+var totalPages = 3; 
 
 //STAMPS
 //Create empty stamp array the first time you open the app
 var stamps;
-if(!localStorage.stamps) {
-    localStorage.setItem('stamps', '[]');
-} else {
-    stamps = JSON.parse(localStorage.getItem('stamps')) || [];
-}
+        if(!localStorage) {
+            localStorage.setItem('stamps', '[]');
+        } else {
+            stamps = JSON.parse(localStorage.getItem('stamps')) || [];
+        }
+        console.log(stamps);
 
 //Stamp asset URLs
-var stampLocations = {
+var stampImages = {
+    Algeria: 'assets/Flags/Algeria.png',
+    Australia: 'assets/Flags/Australia.png',
+    Bangladesh: 'assets/Flags/Bangladesh.png',
+    Brazil: 'assets/Flags/Brazil.png',
+    Canada: 'assets/Flags/Canada.png',
+    Croatia: 'assets/Flags/Croatia.png',
+    CyprusAndGreece: 'assets/Flags/CyprusGreece.png',
     UAE: 'assets/Flags/UAE.png',
 };
 
@@ -41,10 +51,11 @@ class page {
     }
 
     displayStamp() {
+        console.log(this.stamp);
         if(this.stamp) {
             var pageStamp = document.createElement("img");
             pageStamp.className = "stamp";
-            pageStamp.src = stampLocations[this.stamp];
+            pageStamp.src = stampImages[this.stamp];
             document.body.appendChild(pageStamp);
         }
     }
@@ -72,49 +83,49 @@ class page {
     }
 }
 
-var totalPages = 2;
 
 class passport {
     constructor() {
        this.pages = [];
        this.pages[0] = new page(1);
-       this.pages[1] = new page(2);
-       this.pages[totalPages] = new page(3);
+        for(var i = 1; i < totalPages+1; i++) {
+            this.pages[i] = new page(2);
+        }
+       this.pages[totalPages+1] = new page(3);
        this.activePage = 0;
 
-        //put stamps on pages
-       for(var i = 1; i < this.pages.length-1; i++) {
-        if(stamps[i]) {
-            this.pages[i].stamp = stamps[i];
+        //goes through as many pages as there are stamps, adding stamps in order
+       for(var i = 1; i < this.pages.length-1 && i < stamps.length+1; i++) {
+            this.pages[i].stamp = stamps[i-1];
+            console.log(this.pages[i].stamp);
         }
-    }
 
-       //UI
-       this.nextPageButton = document.createElement("img");
-       this.nextPageButton.id = "next-page";
-       this.nextPageButton.className = "UI-button page-advance";
-       this.nextPageButton.src = next_img;
-       this.nextPageButton.addEventListener('click', () => this.pageTurn(true));
+       ///////////UI
+        this.nextPageButton = document.createElement("img");
+        this.nextPageButton.id = "next-page";
+        this.nextPageButton.className = "UI-button page-advance";
+        this.nextPageButton.src = next_img;
+        this.nextPageButton.addEventListener('click', () => this.pageTurn(true));
 
-       this.prevPageButton = document.createElement("img");
-       this.prevPageButton.id = "prev-page";
-       this.prevPageButton.className = "UI-button page-advance";
-       this.prevPageButton.src = prev_img;
-       this.prevPageButton.addEventListener('click', () => this.pageTurn(false));
+        this.prevPageButton = document.createElement("img");
+        this.prevPageButton.id = "prev-page";
+        this.prevPageButton.className = "UI-button page-advance";
+        this.prevPageButton.src = prev_img;
+        this.prevPageButton.addEventListener('click', () => this.pageTurn(false));
 
-       this.quitButton = document.createElement("img");
-       this.quitButton.id = "quit-button";
-       this.quitButton.className = "UI-button";
-       this.quitButton.src = quit_img;
-       this.quitButton.addEventListener('click', function() {
-         window.location.href = "index.html";
-       });
-       
-       this.closeButton = document.createElement("img");
-       this.closeButton.id = "close-button";
-       this.closeButton.className = "UI-button page-advance";
-       this.closeButton.src = close_img;
-       this.closeButton.addEventListener('click', () => this.closePassport());
+        this.quitButton = document.createElement("img");
+        this.quitButton.id = "quit-button";
+        this.quitButton.className = "UI-button";
+        this.quitButton.src = quit_img;
+        this.quitButton.addEventListener('click', function() {
+            window.location.href = "index.html";
+        });
+        
+        this.closeButton = document.createElement("img");
+        this.closeButton.id = "close-button";
+        this.closeButton.className = "UI-button page-advance";
+        this.closeButton.src = close_img;
+        this.closeButton.addEventListener('click', () => this.closePassport());
     }
    
     displayUI() {
@@ -138,13 +149,12 @@ class passport {
 
     //true to advance page, false to go back a page
     pageTurn(n) {
-            //make stamps that aren't supposed to show don't show
-            if(this.pages[this.activePage].stamp != 0) {
+            //make stamps not show on the wrong pages
+        if(this.pages[this.activePage].stamp != 0) {
             var prevStamp = document.body.getElementsByClassName('stamp');
-            console.log(this.pages[this.activePage].stamp);
-            console.log(prevStamp[0]);
-            document.removeChild(prevStamp);
-            console.log("hello");
+            // console.log(this.pages[this.activePage].stamp);
+            // console.log(prevStamp[0]);
+            document.body.removeChild(prevStamp[0]);
         }
 
         //turn the page

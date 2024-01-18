@@ -18,23 +18,27 @@ img {
 .page {  
     width: 95%;  
     max-height: 70%;  
-    object-fit: contain;                     
+    object-fit: contain;    
+    position: absolute;                 
     left: 2.5%;
-    top: 15%;
+    top: 15%; /* og value 15% */
+    bottom: 15%;
     /* object-fit: cover; */
-    position: absolute;
     z-index: 0;
 }
 
 .stamp {
     width: 25%;
-    max-height: 15%;
-    object-fit: contain;                     
-    justify-content: center;
+    max-height: 20%;
     position: absolute;
+    /* object-fit: contain;                     
+    justify-content: center;
     text-align: center;
     top: 50%;
-    left: 37.5%;
+    left: 37.5%; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 4;
 }
 
