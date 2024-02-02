@@ -1,0 +1,21 @@
+Make pages take 4 stamps
+    Give each page, like, 4 stamps to check, and in order
+
+Make stamps have the name
+    Deal w container divs (ughhhhh)
+    Probably gonna have to put the entire passport into a container div tbh
+
+Passport skins
+    50%
+    100%
+
+Stamp get page 
+    Organize elements properly
+    Make button pretty
+    add animation (confetti?)
+
+
+**fluffy stuff**
+    Animate page turns
+    Tap the stamp, get sth
+

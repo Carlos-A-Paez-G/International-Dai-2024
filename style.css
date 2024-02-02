@@ -2,7 +2,7 @@ body {
     height: 100%;
     overflow: hidden;
     font-family: sans-serif;
-    background-color: rgb(127, 127, 127);
+    background-color: rgb(0, 0, 0);
 }
 
 img {
@@ -11,37 +11,45 @@ img {
 
 /* These appear on the page when you acquire a stamp. Attach this style to images */
 .stampAcquired {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 50%;
-
 }
+
 /* Same but for text */
 .stampAcquiredtxt {
+    position: absolute;
+    bottom: 40%;
     font-family: sans-serif;
     text-align: center;
     align-self: center;
-    font-size: 7%;
+    font-size: 100px;
+    color: #cccccc;
+
 }
 
 .backButton {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 15%;
+    /* width: 50%; */
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
     background-color: #e8cca3;
     border: none;
     color: rgb(0, 0, 0);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: 48px;
     margin: 4px 2px;
     cursor: pointer;
-
+   
 }
 
+/*These are for the actual passport */
 #container {
     width: 95%;
     /* max-height: 70%; */
